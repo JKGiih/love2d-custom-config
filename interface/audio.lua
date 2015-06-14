@@ -3,18 +3,14 @@ audio = {}
 function audio.initialize()
    local exists = love.filesystem.exists
    local newSource = love.audio.newSource
-   musicVolume = 0.50
-   soundVolume = 0.50
-   if love.filesystem.exists("assets/bgm.ogg") then 
+   if exists("assets/bgm.ogg") then 
       music = love.audio.newSource("assets/bgm.ogg")
       music:setLooping(true)
       musicAvailable = true
       audio.setMusicVolume()
-      musicOn = true
       music:play()
    else
       musicAvailable = false
-      musicOn = false
    end
    if exists("assets/sf1.ogg") and exists("assets/sf2.ogg") then
       sf1 = newSource("assets/sf1.ogg", static)
@@ -23,10 +19,8 @@ function audio.initialize()
       sf2:setLooping(false)
       soundAvailable = true
       audio.setSoundVolume()
-      soundOn = true
    else
       soundAvailable = false
-      soundOn = false
    end
 end
 
